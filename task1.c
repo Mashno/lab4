@@ -53,7 +53,6 @@ int main()
 	{
 		clock_t time_start = clock();
 		char * str = readline("Enter a line: \n");
-		//clock_t time_start = clock();
 		if(str == NULL)
 		{
 			return 0;
