@@ -3,8 +3,8 @@
 #include <readline/readline.h>
 #include <string.h>
 #include <time.h>
+
 #define PREFIX "tab"
-#define NUMBER_CONSONANTS 40
 #define SIZE_PREFIX 3
 
 void add_prefix(char*str)
@@ -14,8 +14,6 @@ void add_prefix(char*str)
 	char *res =strdup("\0");
 	char *word = strtok(str, " ");
 
-	
-	//for(char* word = strtok(str, " "); word !=NULL;word = strtok(NULL, " "))
 	while(word!=NULL)
         {
 		if(strchr(consonants, word[0])!=NULL)
