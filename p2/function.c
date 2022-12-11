@@ -60,11 +60,11 @@ char* myreadline()
 		}
 		else if(scanf_index>0)
 		{
-			int chunk_len = mystrlen(buffer);
-			int str_len = lenght + chunk_len;
+			size_t chunk_len = mystrlen(buffer);
+			size_t str_len = lenght + chunk_len;
 
 			result = (char*)realloc(result, str_len+1);//единица для \0
-			memcpy(result+lenght, buffer, chunk_len);
+			mymemcpy(result+lenght, buffer, chunk_len);
 			lenght = str_len;
 		}
 		else

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <string.h>
-#include <time.h>
 
 #define PREFIX "tab"
 #define SIZE_PREFIX 3
@@ -37,31 +36,14 @@ void add_prefix(char*str)
 		word = strtok(NULL, " ");
 	}
 	
-	res[strlen(res)-1] = '\0';// избавляемся от последнего пробела
+	if(res[0]!='\0')
+	{
+		res[strlen(res)-1] = '\0';// избавляемся от последнего пробела
+	}
 	printf("\"%s\"\n", res);
 	
 	free(res);
 	free(word);
 }
 
-int main()
-{
-        while(1)
-	{
-		clock_t time_start = clock();
-		char * str = readline("Enter a line: \n");
-		if(str == NULL)
-		{
-			return 0;
-		}
-		else
-		{
-			add_prefix(str);
-			clock_t time_end = clock() - time_start;
-		        printf("Затраченное время: %lf\n\n", (double)time_end / CLOCKS_PER_SEC);
-		}
-		free(str);
-	}
-	
-	return 0;
-}
+

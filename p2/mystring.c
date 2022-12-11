@@ -1,22 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+size_t mystrlen(const char* str)
+{
+	size_t counter = 0;
+	for(int i = 0; str[i]!='\0';i++)
+	{
+		counter+=1;
+	}
+	return counter;
+}
 
-char* mystrchr(char* str, int symbol)
+
+
+char* mystrchr(const char* str, int symbol)
 {
 
-	while(*str!='\0')
+	for(int i = 0;i<mystrlen(str)+1;i++)
 	{
 		if (symbol==*str)
 		{
-			return str;
+			return (char*)str;
 		}
 		str++;
 	}
 	return NULL;
 }
 
-size_t mystrspn(char* str, char* chars)
+size_t mystrspn(const char* str, const char* chars)
 {
 	size_t i = 0;
 	while(str[i] && mystrchr(chars, str[i]))
@@ -25,7 +36,7 @@ size_t mystrspn(char* str, char* chars)
 	}
 	return i;
 }
-char* mystrtok(char* str, char* delim)
+char* mystrtok(char* str, const char* delim)
 {
 	static char*nxt;
 	static int size;
@@ -56,7 +67,7 @@ char* mystrtok(char* str, char* delim)
 			size--;
 			i--;
 		}
-		if(1==i)
+		if(i==1)
 		{
 			*nxt = '\0';
 			if(size>1)
@@ -72,11 +83,14 @@ char* mystrtok(char* str, char* delim)
 
 }
 
-char* mymemcpy(char* destanation, char * origin, int num)
+void* mymemcpy(void* dest, const void * origin, size_t num)
 {
-	for(int i = 0; i<num;i++)
+	char* destanation = (char*)dest;
+	const char* original = (char*) origin;
+
+	for(size_t i = 0; i<num;i++)
 	{
-		destanation[i] = origin[i];
+		destanation[i] = original[i];
 	}
 	return destanation;
 }
@@ -91,14 +105,13 @@ char* mystrdup(char* str)
 	}
 	else
 	{
-		res = (char*) mymemcpy(res, str, lenght);
+		mymemcpy(res, str, lenght);
 		return res;
 	}
 }
 
-char* mystrcat(char* first, char* last)
+char* mystrcat(char* first, const char* last)
 {
-	int common_len = mystrlen(first)+mystrlen(last)+1;;
 	char* add_sign = first+mystrlen(first);
 
 	while(*last != '\0')
@@ -109,15 +122,5 @@ char* mystrcat(char* first, char* last)
 	return first;
 }
 
-
-int mystrlen(char* str)
-{
-	int counter = 0;
-	for(int i = 0; str[i]!='\0';i++)
-	{
-		counter+=1;
-	}
-	return counter;
-}
 
 

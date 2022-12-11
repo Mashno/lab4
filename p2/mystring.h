@@ -1,13 +1,13 @@
-char* mystrchr(char* str, int symbol);
+char* mystrchr(const char* str, int symbol);
 
-size_t mystrspn(char* str, char* chars);
+size_t mystrspn(const char* str, const char* chars);
 
-char* mystrtok(char* str, char* delim);
+char* mystrtok(char* str, const char* delim);
 
-char* mymemcpy(char* destanation, char* origin, int num);
+void* mymemcpy(void* dest,const void* origin, size_t num);
 
 char* mystrdup(char* str);
 
-char* mystrcat(char* first, char* last);
+char* mystrcat(char* first, const char* last);
 
-int mystrlen(char* str);
+size_t mystrlen(const char* str);

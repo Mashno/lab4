@@ -10,7 +10,6 @@ int main()
 {
         while(1)
 	{
-		clock_t time_start = clock();
 		printf("Enter a line: ");
 		char * str = myreadline();
 		if(str == NULL)
@@ -24,11 +23,12 @@ int main()
 		}
 		else
 		{
+			double time_start = ((double)clock())/CLOCKS_PER_SEC;
 			add_prefix(str);
+                        double time_end = ((double)clock())/CLOCKS_PER_SEC;
+		        printf("Затраченное время: %lf\n\n", time_end - time_start);
 		}
 		free(str);
-                clock_t time_end = clock() - time_start;
-		printf("Затраченное время: %lf\n\n", (double)time_end / CLOCKS_PER_SEC);
 	}
 	
 	return 0;
